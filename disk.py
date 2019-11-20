@@ -1,6 +1,7 @@
 import os
 from config import config
 
+
 class Disk:
     def __init__(self, file_path):
         self.file_path = file_path
@@ -46,3 +47,18 @@ class Raid:
     def close(self):
         for disk in self.disks:
             disk.close()
+
+    def set_block(self, disk_no: int, block_no: int, value: str):
+        disk = self.disks[disk_no]
+        disk.write(block_no, value)
+
+    def get_block(self, disk_no: int, block_no: int):
+        disk = self.disks[disk_no]
+        return disk.read(block_no)
+
+    def get_all_blocks(self):
+        res = []
+        for disk_no, disk in enumerate(self.disks):
+            for block_no in range(disk.get_blocks_count()):
+                res.append((disk_no, block_no))
+        return res

@@ -1,7 +1,7 @@
 5
 100
 16
-5
+16
 disks/1.txt
 disks/2.txt
 disks/3.txt
